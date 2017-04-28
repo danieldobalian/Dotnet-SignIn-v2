@@ -1,0 +1,52 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Sign-In with Microsoft Sample</title>
+</head>
+<body>
+    <style type="text/css">
+        body {
+            font-size: small;
+            font-family: Segoe UI, Arial, sans-serif;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+            padding: 5px;
+            border-collapse: collapse;
+            text-align: left;
+            table-layout: fixed;
+            max-width: 100%;
+        }
+
+        th {
+            background-color: #f0f0f0;
+        }
+    </style>
+    <p>Main Claims:</p>
+    <table>
+        <tr><td>Name</td><td>@ViewBag.Name</td></tr>
+        <tr><td>Username</td><td>@ViewBag.Username</td></tr>
+        <tr><td>Subject</td><td>@ViewBag.Subject</td></tr>
+        <tr><td>TenantId</td><td>@ViewBag.TenantId</td></tr>
+    </table>
+    <br />
+    <p>All Claims:</p>
+    <table style="font-size: xx-small">
+        @foreach (var claim in System.Security.Claims.ClaimsPrincipal.Current.Claims)
+        {
+            <tr><td>@claim.Type</td><td>@claim.Value</td></tr>
+        }
+    </table>
+    <br />
+    <br />
+    @Html.ActionLink("Sign out", "SignOut", "Home")
+</body>
+</html>
+
+
